@@ -4,7 +4,7 @@ In a website, there is a robots.txt file, which tells web crawlers which files
 they should and shouldn't access. This project interprets this file into a computer
 understandable format.
 
-#How to Use It
+# How to Use It
 
 Make sure you have the requests module installed. If not, install it with pip3 install
 requests.
