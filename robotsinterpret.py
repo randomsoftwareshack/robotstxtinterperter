@@ -11,16 +11,16 @@ def parseLine(line):
             return [1, line[7:]] # 1 means allow, line[7:] gives path
         elif line[:10] == "User-agent":
             return [2, line[12:]]
+        elif line[:7] == "Sitemap":
+            return [3, line[9:]]
         else:
             return [-1]        
     except:
         return [-1]
 
-
 def interpretRobots(domain):
     try:
-        txt = requests.get(domain + "/robots.txt").text
-        print(txt)
+        txt = requests.get(domain + "/robots.txt" if domain[-1] != "/" else domain + "robots.txt").text
     except:
         print("error")
         return 1
@@ -30,28 +30,34 @@ def interpretRobots(domain):
     # if user-agent: * and disallow:/, then leave
     isCurrentUserAgent = False
 
-    allowed = []
-    disAllowed = []
+    allowed = {}
+    disAllowed = {}
+    sitemaps = {}
+
+    total = {}
+    sitemaps = []
+
+    userId = ""
 
     for i in txt:
         parsedLine = parseLine(i)
 
-        if isCurrentUserAgent:
+        if parsedLine[0] == 3:
+            sitemaps.append(parsedLine[1])
+
+        if userId != "":
             if parsedLine[0] == -1:
                 continue
             elif parsedLine[0] == 0:
-                disAllowed.append(parsedLine[1])
+                total[userId]["disAllowed"].append(parsedLine[1])
             elif parsedLine[0] == 1:
-                allowed.append(parsedLine[1])
+                total[userId]["allowed"].append(parsedLine[1])
             elif parsedLine[0] == 2:
-                if parsedLine[1] != "*":
-                    break; 
-        else:
-            if parsedLine[0] == 2:
-                if parsedLine[1] == "*":
-                    isCurrentUserAgent = True
+                userId = parsedLine[1]
+                total[userId] = {"allowed": [], "disAllowed": []} 
+                    
+        elif parsedLine[0] == 2:
+            userId = parsedLine[1]
+            total[userId] = {"allowed": [], "disAllowed": []}
 
-    print(allowed)
-    print(disAllowed)
-
-
+    return [total, sitemaps]
