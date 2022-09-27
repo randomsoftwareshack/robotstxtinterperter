@@ -10,8 +10,7 @@ understandable format.
 Installation
 ============
 
-.. code-block:: bash
-    pip3 install robotstxtinterpreter
+pip3 install robotstxtinterpreter
 
 =============
 How to Use It
