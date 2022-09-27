@@ -1,10 +1,14 @@
-# robotstxtinterperter
+================
+What Does It Do?
+================
 
 In a website, there is a robots.txt file, which tells web crawlers which files
 they should and shouldn't access. This project interprets this file into a computer
 understandable format.
 
-# How to Use It
+=============
+How to Use It
+=============
 
 Make sure you have the requests module installed. If not, install it with pip3 install
 requests.
@@ -21,13 +25,13 @@ The dict: user-agents is formatted like this:
 
 
 Here is an example usage:
-```
+``
 import robotsinterpret
 
 a = robotsinterpret.interpretRobots("http://example.com")
 print("Allowed files for useragent *: ", a[1]["*"]["allowed"])
 print("Disallowed files for useragent *: ", a[1]["*"]["disAllowed"])
 print("Sitemaps: ", a[2])
-```
+``
 
 
