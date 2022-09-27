@@ -25,10 +25,10 @@ The dict: user-agents is formatted like this:
 
 
 Here is an example usage:
+.. code-block:: python3
+  import robotsinterpret;
 
-import robotsinterpret;
-
-a = robotsinterpret.interpretRobots("http://example.com");
-print("Allowed files for useragent *: ", a[1]["*"]["allowed"]);
-print("Disallowed files for useragent *: ", a[1]["*"]["disAllowed"]);
-print("Sitemaps: ", a[2])
+  a = robotsinterpret.interpretRobots("http://example.com");
+  print("Allowed files for useragent *: ", a[1]["*"]["allowed"]);
+  print("Disallowed files for useragent *: ", a[1]["*"]["disAllowed"]);
+  print("Sitemaps: ", a[2])
