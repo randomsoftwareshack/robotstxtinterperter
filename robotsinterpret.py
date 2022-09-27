@@ -24,9 +24,7 @@ def interpretRobots(domain):
         txt = requests.get(domain + "/robots.txt" if domain[-1] != "/" else domain + "robots.txt").text.splitlines()
     except:
         return [{}, []]
-    print(txt)
 
-    # if user-agent: * and disallow:/, then leave
     sitemaps = {}
 
     total = {}
