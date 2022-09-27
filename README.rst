@@ -34,3 +34,5 @@ Here is an example usage:
     print("Allowed files for useragent *: ", a[1]["*"]["allowed"]);
     print("Disallowed files for useragent *: ", a[1]["*"]["disAllowed"]);
     print("Sitemaps: ", a[2])
+
+If it can't find the robots.txt file or the robots.txt file is blank, it will return [{}, []]
