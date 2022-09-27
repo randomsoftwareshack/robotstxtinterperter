@@ -6,14 +6,17 @@ In a website, there is a robots.txt file, which tells web crawlers which files
 they should and shouldn't access. This project interprets this file into a computer
 understandable format.
 
+============
+Installation
+============
+
+.. code-block:: bash
+    pip3 install robotstxtinterpreter
+
 =============
 How to Use It
 =============
 
-Make sure you have the requests module installed. If not, install it with pip3 install
-requests.
-
-Then download this file and move it into your project directory. Then import this file.
 
 To use it, run the interpretRobots function, with the root domain (ex 
 https://example.com/ or http://example2.com) passed in as an argument
@@ -26,7 +29,7 @@ The dict: user-agents is formatted like this:
 
 Here is an example usage:
 .. code-block:: python
-    import robotsinterpret;
+    from robotstxtinterpreter.robotstxtinterpreter import robotsinterpret;
 
     a = robotsinterpret.interpretRobots("http://example.com");
     print("Allowed files for useragent *: ", a[1]["*"]["allowed"]);
